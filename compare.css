@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    text-decoration:none;
+    border:none;
+    outline:none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+:root {
+    --bg-color:#1f242d;
+    --second-bg-color:#525458;
+    --text-color:#f1f6ff;
+    --main-color:#33e7e4;
+}  
+
+.name{
+    font-size: 5.5rem;
+    color:var(--main-color);
+    font-weight: 900;
+    cursor:pointer;
+    border: 0.2px solid var(--bg-color);
+    text-shadow: #33e7e4 1rem 1rem 8rem;
+
+}
+.header {
+    position:fixed;
+    top:20px;
+    left:-120px;
+    width:120%;
+    padding: 1.2rem 9%;
+    background:var(--bg-color);
+    backdrop-filter: blur(85px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+    background: transparent;
+    backdrop-filter: blur(5px);  
+
+}
+
+.navbar a{
+   
+    font-weight: 500;
+    font-size: 3.1rem;
+    color:var(--text-color);
+    margin-left: 17.7rem ;
+    text-shadow: 0 0 3rem var(--main-color);
+}
+.navbar a:hover,
+.navbar a.Active{
+    color: var(--main-color);
+
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x:hidden;
+}
+
+body {
+    background:url(https://i.gifer.com/J4o.gif) ; 
+    color:var(--text-color);
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');

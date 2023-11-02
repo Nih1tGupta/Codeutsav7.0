@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Ranking prediction</title>
+
+	    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+
+
+	<!-- trying scroller js -->
+
+
+
+	<!-- end -->
+    </head>
+    <body>
+        <!-- Website Title -->
+    	<div class="containers">
+            <div>
+				<h1>NIT RAIPUR<br><h5>NIRF RANK PREDICTOR</h5></h1>
+				<div><img src={{ url_for('static',filename='./300ppi/logo.png') }} class="img-fluid jss-logo" width="10%" height="10%" alt="Image"></div>
+			</div>
+    		<div>
+			<form style="position: relative;" action="{{ url_for('index') }}">	
+        		<input type="submit" class="my-cta-button home_rank" value="Home">
+    		</form>
+		</div>    		
+    	</div>
+    	
+        <div class="notes">
+		  <p><b>Instructions</b>:<br>	* Enter the scores(1-100) of each parameter in their respective text fields and check the rank .<br> * The model is trained for predicting the ranks for the year 2020.</p>
+		</div>
+    	
+    	
+    	<!-- Text Area -->
+		<div class="container">
+		
+					<form action="{{ url_for('predict') }}" method="POST">
+						<div class="flex-column">
+						<div class="tlr_display">
+							
+							<label class="boxHeading">Enter the valid score of TLR &nbsp;</label><br></br>
+							
+							<div class="flex-row">
+								<p class="textTop">SS</p>
+								<input type="range" min="1" max="20" name="tlr1" class="slider" value="0" id="myRangeTLR1">
+								<p class="textBelow"><span id="demo_tlr1" class="demo_tlr"></span></p>
+							</div>
+							<div class="flex-row">
+								<p class="textTop">FSR</p>
+								<input type="range" min="1" max="30" name="tlr1" class="slider" value="0" id="myRangeTLR2">
+								<p class="textBelow"><span id="demo_tlr2" class="demo_tlr"></></span></p>
+							</div>
+							<div class="flex-row">
+								<p class="textTop">FQE</p>
+								<input type="range" min="1" max="20" name="tlr1" class="slider" value="0" id="myRangeTLR3">
+								<p class="textBelow"><span id="demo_tlr3" class="demo_tlr"></></span></p>
+							</div>
+							<div class="flex-row">
+								<p class="textTop">FRU</p>
+								<input type="range" min="1" max="30" name="tlr1" class="slider" value="0" id="myRangeTLR4">								<p class="textBelow"><span id="demo_tlr4" class="demo_tlr"></></span></p>
+							</div>
+
+							<input type="text" name="tlr" id="tlr_one" class="points" style="width : 8%;height:30px">
+							
+						</div>
+						
+						
+						<div class = "rpc_display">
+						
+							<label class="boxHeading">Enter the valid score of RPC&nbsp;</label><br></br>
+						 <div class="flex-row">
+							<p class="textTop">PU</p>
+							 <input type="range" min="1" max="35" name="rpc1" class="slider" value="0" id="myRangeRPC1">
+						  <p class="textBelow"><span id="demo_rpc1" class="demo_rpc"></span></p>
+						 </div>
+						 <div class="flex-row">
+							<p class="textTop">QP</p>
+							 <input type="range" min="1" max="40" name="rpc2" class="slider" value="0" id="myRangeRPC2">
+						 <p class="textBelow"><span id="demo_rpc2" class="demo_rpc"></span></p>
+						 </div>
+						 <div class="flex-row">
+							<p class="textTop">IPR</p>
+						<input type="range" min="1" max="15" name="rpc3" class="slider" value="0" id="myRangeRPC3">
+						 <p class="textBelow"><span id="demo_rpc3" class="demo_rpc"></span></p>
+						 </div>
+						 <div class="flex-row">
+							<p class="textTop">FPPP</p>
+						 <input type="range" min="1" max="10" name="rpc4" class="slider" value="0" id="myRangeRPC4">
+						 <p class="textBelow"><span id="demo_rpc4" class="demo_rpc"></span></p>
+						</div class="flex-row">
+						 <input type="text" name="rpc" id="rpc_one" class="points" style="width : 8%;height:30px">
+						 </div>
+						
+						 <div class = "go_display">
+							<label class="boxHeading">Enter the valid score of GO &nbsp;&nbsp;</label><br></br>
+							<div class="flex-row">
+								<p class="textTop">GPH</p>
+						 <input type="range" min="1" max="40" name="go1" class="slider" value="0" id="myRangeGO1">
+						  <p class="textBelow"><span id="demo_go1" class="demo_go"></span></p>
+							</div>
+							<div class="flex-row">
+								<p class="textTop">GUE</p>
+						  <input type="range" min="1" max="15" name="go2" class="slider" value="0" id="myRangeGO2">
+						 <p class="textBelow"><span id="demo_go2" class="demo_go"></span></p>
+							</div>
+							<div class="flex-row">
+								<p class="textTop">GMS</p>
+						 <input type="range" min="1" max="25" name="go3" class="slider" value="0" id="myRangeGO3">
+						 <p class="textBelow"><span id="demo_go3" class="demo_go"></span></p>
+								</div>
+								<div class="flex-row">
+								<p class="textTop">GPHD</p>
+						 <input type="range" min="1" max="20" name="go4" class="slider" value="0" id="myRangeGO4">
+						 <p class="textBelow"><span id="demo_go4" class="demo_go"></span></p>
+						</div>
+						 <input type="text" name="go" id="go_one" class="points" style="width : 8%;height:30px">
+						 </div>
+						<div class = "oi_display">
+							<label class="boxHeading">Enter the valid score of OI &nbsp;&nbsp;&nbsp;&nbsp;</label><br></br>
+
+							<div class="flex-row">
+								<p class="textTop">RD</p>
+						 <input type="range" min="1" max="30" name="oi1" class="slider" value="0" id="myRangeOI1">
+						 <p class="textBelow"><span id="demo_oi1" class="demo_oi"></span></p>
+						 </div>
+						 <div class="flex-row">
+							<p class="textTop">WD</p>
+							 <input type="range" min="1" max="30" name="oi2" class="slider" value="0" id="myRangeOI2">
+						 <p class="textBelow"><span id="demo_oi2" class="demo_oi"></span></p>
+						 </div>
+						 <div class="flex-row">
+							<p class="textTop">ESCS</p>
+							<input type="range" min="1" max="20" name="oi3" class="slider" value="0" id="myRangeOI3">
+						 <p class="textBelow"><span id="demo_oi3" class="demo_oi"></span></p>
+						 </div>
+						 <div class="flex-row">
+							<p class="textTop">PCS</p>
+							<input type="range" min="1" max="20" name="oi4" class="slider" value="0" id="myRangeOI4">
+						 <p class="textBelow"><span id="demo_oi4" class="demo_oi"></span></p>
+						</div>
+						 <input type="text" name="oi" id="oi_one" class="points" style="width : 8%;height:30px">
+						 </div>
+
+						 <div class = "ppn_display">
+							<label class="boxHeading">Enter the valid score of PPN &nbsp;</label><br></br>
+							<div class="flex-row">
+								<p class="textTop">PR</p>
+								<input type="range" min="1" max="100" name="ppn1" class="slider" value="0" id="myRangePPN1">
+							 <p class="textBelow"><span id="demo_ppn1" class="demo_ppn"></span></p>
+							</div>
+							<input type="text" name="ppn"  id="ppn_one" class = "ppn_type points">
+			
+						 
+						 </div> <br></br>
+
+<!--end-->				</div>
+						 <div class="bottomButton">
+						
+						<input id="totsubmit" type="submit" class="my-cta-button" value="Predict">
+
+						<br></br>
+						</div>
+					</form>
+	
+		</div>
+
+
+
+		
+    
+    	
+    		<script>
+	
+
+
+
+	function scoreCalculate(tots){
+	var total=0;
+		for(var i=1;i<=4;i++){
+			
+			total+=parseInt(document.getElementById("myRange"+tots+String(i)).value);
+		}
+	return total;
+	}
+
+	function calcTots(totValue,tots){
+		document.getElementById(totValue+"_one").value=scoreCalculate(tots);
+	}
+
+
+	document.getElementById("demo_tlr1").innerHTML=document.getElementById("myRangeTLR1").value;
+	document.getElementById("myRangeTLR1").oninput = function() {
+	document.getElementById("demo_tlr1").innerHTML = this.value;
+	calcTots("tlr","TLR");
+	}
+	
+	
+		document.getElementById("demo_tlr2").innerHTML=document.getElementById("myRangeTLR2").value;
+	document.getElementById("myRangeTLR2").oninput = function() {
+	document.getElementById("demo_tlr2").innerHTML = this.value;
+	calcTots("tlr","TLR");
+	}
+	
+		document.getElementById("demo_tlr3").innerHTML=document.getElementById("myRangeTLR3").value;
+	document.getElementById("myRangeTLR3").oninput = function() {
+	document.getElementById("demo_tlr3").innerHTML = this.value;
+	calcTots("tlr","TLR");
+	}
+	
+		document.getElementById("demo_tlr4").innerHTML=document.getElementById("myRangeTLR4").value;
+	document.getElementById("myRangeTLR4").oninput = function() {
+	document.getElementById("demo_tlr4").innerHTML = this.value;
+	calcTots("tlr","TLR");
+	}
+	
+
+	
+		document.getElementById("demo_rpc1").innerHTML=document.getElementById("myRangeRPC1").value;
+	document.getElementById("myRangeRPC1").oninput = function() {
+	document.getElementById("demo_rpc1").innerHTML = this.value;
+	calcTots("rpc","RPC");
+	}
+	
+		document.getElementById("demo_rpc2").innerHTML=document.getElementById("myRangeRPC2").value;
+	document.getElementById("myRangeRPC2").oninput = function() {
+	document.getElementById("demo_rpc2").innerHTML = this.value;
+	calcTots("rpc","RPC");
+	}
+	
+	
+		document.getElementById("demo_rpc3").innerHTML=document.getElementById("myRangeRPC3").value;
+	document.getElementById("myRangeRPC3").oninput = function() {
+	document.getElementById("demo_rpc3").innerHTML = this.value;
+	calcTots("rpc","RPC");
+	}
+	
+		document.getElementById("demo_rpc4").innerHTML=document.getElementById("myRangeRPC4").value;
+	document.getElementById("myRangeRPC4").oninput = function() {
+	document.getElementById("demo_rpc4").innerHTML = this.value;
+	calcTots("rpc","RPC");
+	}
+	
+
+		document.getElementById("demo_go1").innerHTML=document.getElementById("myRangeGO1").value;
+	document.getElementById("myRangeGO1").oninput = function() {
+	document.getElementById("demo_go1").innerHTML = this.value;
+	calcTots("go","GO");
+	}
+	
+		document.getElementById("demo_go2").innerHTML=document.getElementById("myRangeGO2").value;
+	document.getElementById("myRangeGO2").oninput = function() {
+	document.getElementById("demo_go2").innerHTML = this.value;
+	calcTots("go","GO");
+	}
+		document.getElementById("demo_go3").innerHTML=document.getElementById("myRangeGO3").value;
+	document.getElementById("myRangeGO3").oninput = function() {
+	document.getElementById("demo_go3").innerHTML = this.value;
+	calcTots("go","GO");
+	}
+	
+		document.getElementById("demo_go4").innerHTML=document.getElementById("myRangeGO4").value;
+	document.getElementById("myRangeGO4").oninput = function() {
+	document.getElementById("demo_go4").innerHTML = this.value;
+	calcTots("go","GO");
+	}
+
+	
+		document.getElementById("demo_oi1").innerHTML=document.getElementById("myRangeOI1").value;
+	document.getElementById("myRangeOI1").oninput = function() {
+	document.getElementById("demo_oi1").innerHTML = this.value;
+	calcTots("oi","OI");
+	}
+	
+		document.getElementById("demo_oi2").innerHTML=document.getElementById("myRangeOI2").value;
+	document.getElementById("myRangeOI2").oninput = function() {
+	document.getElementById("demo_oi2").innerHTML = this.value;
+	calcTots("oi","OI");
+	}
+	
+		document.getElementById("demo_oi3").innerHTML=document.getElementById("myRangeOI3").value;
+	document.getElementById("myRangeOI3").oninput = function() {
+	document.getElementById("demo_oi3").innerHTML = this.value;
+	calcTots("oi","OI");
+	}
+	
+		document.getElementById("demo_oi4").innerHTML=document.getElementById("myRangeOI4").value;
+	document.getElementById("myRangeOI4").oninput = function() {
+	document.getElementById("demo_oi4").innerHTML = this.value;
+	calcTots("oi","OI");
+	}
+
+	document.getElementById("demo_ppn1").innerHTML=document.getElementById("myRangePPN1").value;
+	document.getElementById("myRangePPN1").oninput = function() {
+	document.getElementById("demo_ppn1").innerHTML = this.value;
+	document.getElementById("ppn_one").value=document.getElementById("demo_ppn1").innerHTML;
+	}
+	
+	
+
+	
+		
+	</script>
+    	
+    	
+    	<!-- Result -->
+		<div class="results1 prediction">
+			<b><h3 style="font-family: Times New Roman, Times, serif;color:#ce55bf;">Total Score of the Institute: {{score}}</h3></b>
+			<b><h3 style="font-family: Times New Roman, Times, serif;color:#ce55bf;">{{prediction}}</h3></b>
+		</div>
+
+		<table>
+			<thead>
+				<td><b>Abbreviations</b></td>
+				<td><b>Parameters</b></td>
+			</thead>
+			<tbody>
+				<tr>
+					<td>SS</td>
+					<td>Student Strength including Doctorial strength</td>
+				</tr>
+				<tr>
+					<td>FSR</td>
+					<td> Faculty-student ratio with emphasis on permanent faculty </td>
+				</tr>
+				<tr>
+					<td>FQE</td>
+					<td>Combined metric for Faculty with PhD</td>
+				</tr>				<tr>
+					<td>FRU</td>
+					<td>Financial Resources and their Utilisation</td>
+				</tr>				<tr>
+					<td>PU</td>
+					<td>Combined metric for Publications</td>
+				</tr>				<tr>
+					<td>QP</td>
+					<td>Combined metric for Quality of Publications</td>
+				</tr>				<tr>
+					<td>IPR</td>
+					<td>IPR and Patents: Published and Granted</td>
+				</tr>				<tr>
+					<td>FPPP</td>
+					<td>Footprint of Projects and Professional Practice</td>
+				</tr>				<tr>
+					<td>GPH</td>
+					<td> Combined metric for Placement and Higher Studies </td>
+				</tr>				<tr>
+					<td>GUE</td>
+					<td>Metric for University Examinations</td>
+				</tr>				<tr>
+					<td>GMS</td>
+					<td>Median Salary</td>
+				</tr>				<tr>
+					<td>GPHD</td>
+					<td>Metric for Number of Ph.D. Students Graduated</td>
+				</tr>				<tr>
+					<td>RD</td>
+					<td>Percentage of Students from other States Countries</td>
+				</tr>				<tr>
+					<td>WD</td>
+					<td>Percentage of Women</td>
+				</tr>				<tr>
+					<td>ESCS</td>
+					<td>Economically and Socially Challenged Students</td>
+				</tr>				<tr>
+					<td>PCS</td>
+					<td>Facilities for Physically Challenged Students</td>
+					</tr>
+					<tr>
+						<td>PR</td>
+						<td>Peer Perception: Employers & Academic Peers</td>
+						</tr>
+			</tbody>
+		</table>
+
+         
+         
+         
+        <!-- Footer -->
+       <div class='footer'>
+           <p class='footer-description'>JSS SCIENCE AND TECHNOLOGY UNIVERSITY.</p>
+       </div>
+
+    </body>
+</html>

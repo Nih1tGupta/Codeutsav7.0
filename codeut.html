@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" contents="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIRF PREDICTOR TOOL</title><style>
+ 
+    </style>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='codeut.css') }}">
+</head>
+<body>
+    <header class="header">
+        <!-- <h3> <span1 class="typing-ani"></span1></h3> -->
+        <a href="#" class="name">INNOV8ORS</a>
+        <nav class="navbar">
+            <a href="{{ url_for('index') }}" class="Active">Home</a>
+            <a href="#About">About</a>
+            <a href="{{ url_for('engg') }}">NIRF Predictor</a>
+            <a href="{{ url_for('analysis') }}">Analyzer</a>
+            <!-- <a href="{{ url_for('engg') }}">Compare</a> -->
+            <a href="#Team">Team</a>
+          
+        </nav>
+    </header>
+    <section class="Home" id="Home">
+        <div class="Home-cont">
+            <h1><b>NIRF DASHBOARD</b></h1>
+        </div>
+        <!-- <div class="search-container">
+            <input type="text" placeholder="Search College" class="search-input" id="searchInput" oninput="showResults()">
+            <div class="dropdown" id="Dropdown"></div>
+        </div>
+        <button class="btn" onclick="search()">Search</button> -->
+        <div class="Home-img">
+            <img src="{{ url_for('static', filename='NIRF.jpg') }}" alt="LOADING">
+        </div>
+    </section>
+
+    <section class="About" id="About">
+     
+                <div class ="About-cont">
+                    <h2 class = "heading">About </h2>
+                <p>The National Institutional Ranking Framework (NIRF) was approved by the MHRD and launched by Honourable Minister of Human Resource Development on 29th September 2015.<br>
+
+                    This framework outlines a methodology to rank institutions across the country. The methodology draws from the overall recommendations broad understanding arrived at by a Core Committee set up by MHRD, to identify the broad parameters for ranking various universities and institutions. The parameters broadly cover “Teaching, Learning and Resources,” “Research and Professional Practices,” “Graduation Outcomes,” “Outreach and Inclusivity,” and “Perception”.</p>
+                    <h2 class = "heading">Parameters </h2>
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')"><span>Teaching, Learning & Resources (TLR)</span></p>
+                    <p class="tab-links" onclick="opentab('experience')"><span>Research and &nbsp &nbsp Professional Practice</span></p>
+                    <p class="tab-links" onclick="opentab('education')"><span>Graduation&nbsp   Outcomes</span></p>
+                    <p class="tab-links" onclick="opentab('OI')"><span>Outreach and Inclusivity</span></p>
+                    <p class="tab-links" onclick="opentab('PR')"><span>Peer and Perception</span></p>
+                </div>
+
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><Student><span>SS</span><br>Student Strength including Ph.D. students : 20 marks</li><br>
+                        <li><span>FSR</span><br>Faculty-Student Ratio with emphasis on permanent faculty</li><br>
+                        <li><span>FRE</span><br> Combined Metric for Faculty with PhD (or equivalent) and Experience</li><br>
+                        <li><span>FRU</span><br>Financial Resources and their Utilisation</li><br>
+                </div>
+
+                <div class="tab-contents" id="experience">
+                    <ul>
+                        <li><span>PU</span><br>Combined metric for Publications</li><BR>
+                        <li><span>QP</span><br>.Combined metric for Quality of Publications</li><BR>
+                        <li><span>IPR</span><br>IPR and Patents: Patents Published & Granted</li><BR>
+                        <li><span>FPPP</span><br>Footprint of Projects, Professional Practice and Executive Development Programs</li><BR>
+                 </div>
+
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>GPH</span><br>Gross Placement & Higher Studies</li><br>
+                        <li><span>GUE</span><br>Metric for University Examinations</li><br>
+                        <li><span>MS</span><br></li><br>
+                        <li><span>GPHD</span><br>Metric for Number of Ph.D Students Graduated</li><BR>
+                    </ul>
+                </div>
+
+                <div class="tab-contents" id="OI">
+                    <ul>
+                        <li><span>RD</span><br>Percentage of Students from Other States/ Countries</li><br>
+                        <li><span>WD</span><br>Percentage of Women (Women Diversity WD)</li><br>
+                        <li><span>ESCS</span><br>Economically and Socially Challenged Students</li><br>
+                        <li><span>PCS</span><br>Facilities for Physically Challenged Students</li><br>
+                </div>
+
+                <div class="tab-contents active-tab" id="PR">
+                    <ul>
+                        <li><span>PR</span><br>Peer Perception: Employers & Academic Peer</li><br>
+                        
+                </div>
+               
+            </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                <!-- ABOUT TEAM -->
+
+
+<section class="Team" id="Team">
+ 
+        <h2 class="heading"><span>Team Members</span></h2>
+        <div class ="Team-cont">
+            <div class="team-box">
+                                                                    <!-- ARNAV -->
+                <h3>Arnav Sharma</h3>
+                <p>Information Technology 
+                    <br>3rd Semester
+                    <br>
+                    <p><h3>Backend Developer</h3></p>
+            </p>
+           
+        
+            </div>
+
+            <div class="team-box">
+                <!-- nihit -->
+<h3> Nihit Gupta</h3>
+<p>Information Technology 
+    <br>&nbsp 3rd Semester
+    <br>
+    <p><h3>Frontend Developer</h3></p>
+</p>
+ 
+
+</div>
+
+            <div class="team-box">
+                                                                     <!-- prateek -->
+                <h3> Prateek Singh</h3>
+                <p>Chemical Engineering
+                    <br>&nbsp 3rd Semester
+                    <br>
+                    <p><h3>Frontend Developer</h3></p>
+            </p>
+        
+            </div>
+
+            <div class="team-box">
+                                                                     <!--apoorv -->
+                <h3>Apoorva Sahu</h3>
+                <p>Information Technology 
+                    <br>&nbsp 3rd Semester
+                    <br>
+                    <p><h3>Data and Content</h3></p>
+            </p>
+              
+             
+            </div>
+        </div>
+        </div>
+</section>
+
+<script>
+    var tablinks= document.getElementsByClassName("tab-links ");
+    var tabcontents= document.getElementsByClassName("tab-contents ");
+
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+</script>
+
+<script src="{{ url_for('static', filename='codeut.js') }}"></script>
+<script src="{{ url_for('static', filename='vanilla-tilt.js') }}"></script>
+<script>
+    	VanillaTilt.init(document.querySelectorAll(".team-box"), {
+		max: 25,
+		speed: 400
+	});
+</script>
+
+
+    </body>
+</html>
+
+
+

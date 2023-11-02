@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Ranking prediction</title>
+	    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='codeut.css') }}">
+        <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+</head>
+<body>
+    <!-- <div class = "image"></div> -->
+    <div class="containers">
+        <div>
+            <h1>NIT RAIPUR<br><h5>NIRF RANK PREDICTOR</h5></h1>
+            <div><img src={{ url_for('static',filename='./300ppi/logo.png') }} class="img-fluid jss-logo" width="10%" height="10%" alt="Image"></div>
+        </div>
+        <div>
+        <form style="position: relative;" action="{{ url_for('index') }}">	
+            <input type="submit" class="my-cta-button home_rank" value="Home">
+        </form>
+    </div>    		
+    </div>
+    <div class="main-container">
+        <div>
+            <form action="{{ url_for('college_data') }}" method="POST">
+                <div class="search-container">
+                    <input name="college" type="text" placeholder="Search College" class="search-input" id="searchInput" oninput="showResults()">
+                    <div class="dropdown" id="Dropdown"></div>
+                </div>
+                <button class="btn" onclick="search()">Search</button>
+            </form>
+        </div>
+        <div>
+            <h1>
+                {{ clg_info[1] }}
+            </h1>
+        </div>
+        <div class="container chrs">
+            <canvas id="chart1"></canvas>
+            <canvas id="chart2"></canvas>
+            <canvas id="chart3"></canvas>
+            <canvas id="chart4"></canvas>
+            <canvas id="chart5"></canvas>
+            <canvas id="chart6"></canvas>
+        </div>
+        <div>
+            <h1>
+                Area(s) of improvement: 
+            </h1>
+            <ul>{% for item in messages %}
+                <li><h4>Improvement can be done in the parameter of {{ item }} as the peak value of this parameter was achieved earlier and now has fallen down.</h4></li>
+            {% endfor %}</ul>
+        </div>
+    </div>
+        <!-- <p> {{ clg_info }} </p> -->
+        <script src="
+        https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js
+        "></script>
+    <script src="{{ url_for('static', filename='codeut.js') }}"></script>
+    <script>
+        function replaceZeroByAverage(list) {
+            const average = list.reduce((acc, curr) => acc + curr, 0) / list.length;
+            return list.map(num => num === 0 ? average : num);
+        }
+        let total = {{ clg_total|tojson }}; 
+        let tlr = {{ clg_tlr|tojson }}; 
+        let rpc = {{ clg_rpc|tojson }}; 
+        let go = {{ clg_go|tojson }}; 
+        let oi = {{ clg_oi|tojson }}; 
+        let pr = {{ clg_pr|tojson }}; 
+        total = total.map(Number);
+        tlr = tlr.map(Number);
+        rpc = rpc.map(Number);
+        go = go.map(Number);
+        oi = oi.map(Number);
+        pr = pr.map(Number);
+        ttl = replaceZeroByAverage(total);
+        tlr = replaceZeroByAverage(tlr);
+        rpc = replaceZeroByAverage(rpc);
+        go = replaceZeroByAverage(go);
+        oi = replaceZeroByAverage(oi);
+        pr = replaceZeroByAverage(pr);
+        // console.log(ttl);
+        let chart1 = document.getElementById('chart1').getContext('2d');
+        let barChart1 = new Chart(chart1, {
+            type: 'line',
+            data: {
+                labels: [2016, 2017, 2018, 2019, 2020, 2021],
+                datasets: [{
+                    label: "Total Score",
+                    data : ttl.map(Number).reverse()
+                }]
+            },
+            options: {
+                title:{
+                    display: true, 
+                    text: 'Total NIRF Score (Year-wise)'
+                }
+            }
+        });
+        let chart2 = document.getElementById('chart2').getContext('2d');
+        let barChart2 = new Chart(chart2, {
+            type: 'line',
+            data: {
+                labels: [2016, 2017, 2018, 2019, 2020, 2021],
+                datasets: [{
+                    label: "TLR Score",
+                    data : tlr.map(Number).reverse()
+                }]
+            }
+        });
+        let chart3 = document.getElementById('chart3').getContext('2d');
+        let barChart3 = new Chart(chart3, {
+            type: 'line',
+            data: {
+                labels: [2016, 2017, 2018, 2019, 2020, 2021],
+                datasets: [{
+                    label: "RPC Score",
+                    data : rpc.map(Number).reverse()
+                }]
+            }
+        });
+        let chart4 = document.getElementById('chart4').getContext('2d');
+        let barChart4 = new Chart(chart4, {
+            type: 'line',
+            data: {
+                labels: [2016, 2017, 2018, 2019, 2020, 2021],
+                datasets: [{
+                    label: "GO Score",
+                    data : go.map(Number).reverse()
+                }]
+            }
+        });
+        let chart5 = document.getElementById('chart5').getContext('2d');
+        let barChart5 = new Chart(chart5, {
+            type: 'line',
+            data: {
+                labels: [2016, 2017, 2018, 2019, 2020, 2021],
+                datasets: [{
+                    label: "OI Score",
+                    data : oi.map(Number).reverse()
+                }]
+            }
+        });
+        let chart6 = document.getElementById('chart6').getContext('2d');
+        let barChart6 = new Chart(chart6, {
+            type: 'line',
+            data: {
+                labels: [2016, 2017, 2018, 2019, 2020, 2021],
+                datasets: [{
+                    label: "Perception Score",
+                    data : pr.map(Number).reverse()
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
